@@ -1,4 +1,4 @@
-package govaluate
+package eval
 
 /*
 	Courtesy of abrander

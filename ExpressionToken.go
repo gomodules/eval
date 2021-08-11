@@ -1,4 +1,4 @@
-package govaluate
+package eval
 
 /*
 	Represents a single parsed token.

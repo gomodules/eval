@@ -1,4 +1,4 @@
-package govaluate
+package eval
 
 // sanitizedParameters is a wrapper for Parameters that does sanitization as
 // parameters are accessed.

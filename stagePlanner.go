@@ -1,4 +1,4 @@
-package govaluate
+package eval
 
 import (
 	"errors"

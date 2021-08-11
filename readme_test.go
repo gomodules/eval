@@ -1,4 +1,4 @@
-package govaluate
+package eval
 
 /*
   Contains test cases for all the expression examples given in the README.
