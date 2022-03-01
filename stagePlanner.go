@@ -60,20 +60,21 @@ type precedencePlanner struct {
 	nextRight precedent
 }
 
-var planPrefix precedent
-var planExponential precedent
-var planMultiplicative precedent
-var planAdditive precedent
-var planBitwise precedent
-var planShift precedent
-var planComparator precedent
-var planLogicalAnd precedent
-var planLogicalOr precedent
-var planTernary precedent
-var planSeparator precedent
+var (
+	planPrefix         precedent
+	planExponential    precedent
+	planMultiplicative precedent
+	planAdditive       precedent
+	planBitwise        precedent
+	planShift          precedent
+	planComparator     precedent
+	planLogicalAnd     precedent
+	planLogicalOr      precedent
+	planTernary        precedent
+	planSeparator      precedent
+)
 
 func init() {
-
 	// all these stages can use the same code (in `planPrecedenceLevel`) to execute,
 	// they simply need different type checks, symbols, and recursive precedents.
 	// While not all precedent phases are listed here, most can be represented this way.
@@ -149,7 +150,6 @@ func init() {
 	and link it to other `precedent`s which recurse to parse other precedence levels.
 */
 func makePrecedentFromPlanner(planner *precedencePlanner) precedent {
-
 	var generated precedent
 	var nextRight precedent
 
@@ -179,7 +179,6 @@ func makePrecedentFromPlanner(planner *precedencePlanner) precedent {
 	The three stages of evaluation can be thought of as parsing strings to tokens, then tokens to a stage list, then evaluation with parameters.
 */
 func planStages(tokens []ExpressionToken) (*evaluationStage, error) {
-
 	stream := newTokenStream(tokens)
 
 	stage, err := planTokens(stream)
@@ -196,7 +195,6 @@ func planStages(tokens []ExpressionToken) (*evaluationStage, error) {
 }
 
 func planTokens(stream *tokenStream) (*evaluationStage, error) {
-
 	if !stream.hasNext() {
 		return nil, nil
 	}
@@ -214,8 +212,8 @@ func planPrecedenceLevel(
 	validSymbols map[string]OperatorSymbol,
 	validKinds []TokenKind,
 	rightPrecedent precedent,
-	leftPrecedent precedent) (*evaluationStage, error) {
-
+	leftPrecedent precedent,
+) (*evaluationStage, error) {
 	var token ExpressionToken
 	var symbol OperatorSymbol
 	var leftStage, rightStage *evaluationStage
@@ -272,7 +270,6 @@ func planPrecedenceLevel(
 		checks = findTypeChecks(symbol)
 
 		return &evaluationStage{
-
 			symbol:     symbol,
 			leftStage:  leftStage,
 			rightStage: rightStage,
@@ -293,7 +290,6 @@ func planPrecedenceLevel(
 	A special case where functions need to be of higher precedence than values, and need a special wrapped execution stage operator.
 */
 func planFunction(stream *tokenStream) (*evaluationStage, error) {
-
 	var token ExpressionToken
 	var rightStage *evaluationStage
 	var err error
@@ -311,7 +307,6 @@ func planFunction(stream *tokenStream) (*evaluationStage, error) {
 	}
 
 	return &evaluationStage{
-
 		symbol:          FUNCTIONAL,
 		rightStage:      rightStage,
 		operator:        makeFunctionStage(token.Value.(ExpressionFunction)),
@@ -320,7 +315,6 @@ func planFunction(stream *tokenStream) (*evaluationStage, error) {
 }
 
 func planAccessor(stream *tokenStream) (*evaluationStage, error) {
-
 	var token, otherToken ExpressionToken
 	var rightStage *evaluationStage
 	var err error
@@ -356,7 +350,6 @@ func planAccessor(stream *tokenStream) (*evaluationStage, error) {
 	}
 
 	return &evaluationStage{
-
 		symbol:          ACCESS,
 		rightStage:      rightStage,
 		operator:        makeAccessorStage(token.Value.([]string)),
@@ -369,7 +362,6 @@ func planAccessor(stream *tokenStream) (*evaluationStage, error) {
 	clauses, and prefixes.
 */
 func planValue(stream *tokenStream) (*evaluationStage, error) {
-
 	var token ExpressionToken
 	var symbol OperatorSymbol
 	var ret *evaluationStage
@@ -458,7 +450,6 @@ type typeChecks struct {
 	Maps a given [symbol] to a set of typechecks to be used during runtime.
 */
 func findTypeChecks(symbol OperatorSymbol) typeChecks {
-
 	switch symbol {
 	case GT:
 		fallthrough
@@ -554,7 +545,6 @@ func findTypeChecks(symbol OperatorSymbol) typeChecks {
 	For commutative operators like "+" or "-", it's no big deal. But for order-specific operators, it ruins the expected result.
 */
 func reorderStages(rootStage *evaluationStage) {
-
 	// traverse every rightStage until we find multiples in a row of the same precedence.
 	var identicalPrecedences []*evaluationStage
 	var currentStage, nextStage *evaluationStage
@@ -601,7 +591,6 @@ func reorderStages(rootStage *evaluationStage) {
 	That list is assumed to be a root-to-leaf (ordered) list of evaluation stages, where each is a right-hand stage of the last.
 */
 func mirrorStageSubtree(stages []*evaluationStage) {
-
 	var rootStage, inverseStage, carryStage, frontStage *evaluationStage
 
 	stagesLength := len(stages)
@@ -646,7 +635,6 @@ func mirrorStageSubtree(stages []*evaluationStage) {
 	Recurses through all operators in the entire tree, eliding operators where both sides are literals.
 */
 func elideLiterals(root *evaluationStage) *evaluationStage {
-
 	if root.leftStage != nil {
 		root.leftStage = elideLiterals(root.leftStage)
 	}
@@ -664,7 +652,6 @@ func elideLiterals(root *evaluationStage) *evaluationStage {
 	Otherwise, returns a new stage representing the condensed value from the elided stages.
 */
 func elideStage(root *evaluationStage) *evaluationStage {
-
 	var leftValue, rightValue, result interface{}
 	var err error
 

@@ -9,7 +9,6 @@ import (
 	Gotta get that 95% code coverage yall. That's why tests like this get written; over-reliance on bad metrics.
 */
 func TestTokenKindStrings(test *testing.T) {
-
 	var kindStrings []string
 	var kindString string
 

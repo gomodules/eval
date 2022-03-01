@@ -12,7 +12,6 @@ import (
 )
 
 func parseTokens(expression string, functions map[string]ExpressionFunction) ([]ExpressionToken, error) {
-
 	var ret []ExpressionToken
 	var token ExpressionToken
 	var stream *lexerStream
@@ -53,7 +52,6 @@ func parseTokens(expression string, functions map[string]ExpressionFunction) ([]
 }
 
 func readToken(stream *lexerStream, state lexerState, functions map[string]ExpressionFunction) (ExpressionToken, error, bool) {
-
 	var function ExpressionFunction
 	var ret ExpressionToken
 	var tokenValue interface{}
@@ -90,7 +88,6 @@ func readToken(stream *lexerStream, state lexerState, functions map[string]Expre
 				if stream.canRead() && character == 'x' {
 					tokenString, _ = readUntilFalse(stream, false, true, true, isHexDigit)
 					tokenValueInt, err := strconv.ParseUint(tokenString, 16, 64)
-
 					if err != nil {
 						errorMsg := fmt.Sprintf("Unable to parse hex value '%v' to uint64\n", tokenString)
 						return ExpressionToken{}, errors.New(errorMsg), false
@@ -152,7 +149,6 @@ func readToken(stream *lexerStream, state lexerState, functions map[string]Expre
 				kind = BOOLEAN
 				tokenValue = true
 			} else {
-
 				if tokenValue == "false" {
 
 					kind = BOOLEAN
@@ -289,7 +285,6 @@ func readToken(stream *lexerStream, state lexerState, functions map[string]Expre
 }
 
 func readTokenUntilFalse(stream *lexerStream, condition func(rune) bool) string {
-
 	var ret string
 
 	stream.rewind(1)
@@ -302,7 +297,6 @@ func readTokenUntilFalse(stream *lexerStream, condition func(rune) bool) string 
 	Returns false if the stream ended before whitespace was broken or condition was met.
 */
 func readUntilFalse(stream *lexerStream, includeWhitespace bool, breakWhitespace bool, allowEscaping bool, condition func(rune) bool) (string, bool) {
-
 	var tokenBuffer bytes.Buffer
 	var character rune
 	var conditioned bool
@@ -349,7 +343,6 @@ func readUntilFalse(stream *lexerStream, includeWhitespace bool, breakWhitespace
 	The returns slice will represent the optimized (or unmodified) list of tokens to use.
 */
 func optimizeTokens(tokens []ExpressionToken) ([]ExpressionToken, error) {
-
 	var token ExpressionToken
 	var symbol OperatorSymbol
 	var err error
@@ -388,7 +381,6 @@ func optimizeTokens(tokens []ExpressionToken) ([]ExpressionToken, error) {
 	Checks the balance of tokens which have multiple parts, such as parenthesis.
 */
 func checkBalance(tokens []ExpressionToken) error {
-
 	var stream *tokenStream
 	var token ExpressionToken
 	var parens int
@@ -419,7 +411,6 @@ func isDigit(character rune) bool {
 }
 
 func isHexDigit(character rune) bool {
-
 	character = unicode.ToLower(character)
 
 	return unicode.IsDigit(character) ||
@@ -432,17 +423,14 @@ func isHexDigit(character rune) bool {
 }
 
 func isNumeric(character rune) bool {
-
 	return unicode.IsDigit(character) || character == '.'
 }
 
 func isNotQuote(character rune) bool {
-
 	return character != '\'' && character != '"'
 }
 
 func isNotAlphanumeric(character rune) bool {
-
 	return !(unicode.IsDigit(character) ||
 		unicode.IsLetter(character) ||
 		character == '(' ||
@@ -453,7 +441,6 @@ func isNotAlphanumeric(character rune) bool {
 }
 
 func isVariableName(character rune) bool {
-
 	return unicode.IsLetter(character) ||
 		unicode.IsDigit(character) ||
 		character == '_' ||
@@ -461,7 +448,6 @@ func isVariableName(character rune) bool {
 }
 
 func isNotClosingBracket(character rune) bool {
-
 	return character != ']'
 }
 
@@ -471,7 +457,6 @@ func isNotClosingBracket(character rune) bool {
 	otherwise returns false through the second return.
 */
 func tryParseTime(candidate string) (time.Time, bool) {
-
 	var ret time.Time
 	var found bool
 
@@ -504,7 +489,6 @@ func tryParseTime(candidate string) (time.Time, bool) {
 }
 
 func tryParseExactTime(candidate string, format string) (time.Time, bool) {
-
 	var ret time.Time
 	var err error
 
@@ -517,7 +501,6 @@ func tryParseExactTime(candidate string, format string) (time.Time, bool) {
 }
 
 func getFirstRune(candidate string) rune {
-
 	for _, character := range candidate {
 		return character
 	}

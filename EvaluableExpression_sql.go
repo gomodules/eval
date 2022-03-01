@@ -19,7 +19,6 @@ import (
 	Times are formatted according to this.QueryDateFormat.
 */
 func (this EvaluableExpression) ToSQLQuery() (string, error) {
-
 	var stream *tokenStream
 	var transactions *expressionOutputStream
 	var transaction string
@@ -42,7 +41,6 @@ func (this EvaluableExpression) ToSQLQuery() (string, error) {
 }
 
 func (this EvaluableExpression) findNextSQLString(stream *tokenStream, transactions *expressionOutputStream) (string, error) {
-
 	var token ExpressionToken
 	var ret string
 

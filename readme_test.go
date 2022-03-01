@@ -10,7 +10,6 @@ import (
 )
 
 func TestBasicEvaluation(test *testing.T) {
-
 	expression, err := NewEvaluableExpression("10 > 0")
 	if err != nil {
 		test.Log(err)
@@ -30,7 +29,6 @@ func TestBasicEvaluation(test *testing.T) {
 }
 
 func TestParameterEvaluation(test *testing.T) {
-
 	expression, err := NewEvaluableExpression("foo > 0")
 	if err != nil {
 		test.Log(err)
@@ -53,7 +51,6 @@ func TestParameterEvaluation(test *testing.T) {
 }
 
 func TestModifierEvaluation(test *testing.T) {
-
 	expression, err := NewEvaluableExpression("(requests_made * requests_succeeded / 100) >= 90")
 	if err != nil {
 		test.Log(err)
@@ -77,7 +74,6 @@ func TestModifierEvaluation(test *testing.T) {
 }
 
 func TestStringEvaluation(test *testing.T) {
-
 	expression, err := NewEvaluableExpression("http_response_body == 'service is ok'")
 	if err != nil {
 		test.Log(err)
@@ -100,7 +96,6 @@ func TestStringEvaluation(test *testing.T) {
 }
 
 func TestFloatEvaluation(test *testing.T) {
-
 	expression, err := NewEvaluableExpression("(mem_used / total_mem) * 100")
 	if err != nil {
 		test.Log(err)
@@ -124,7 +119,6 @@ func TestFloatEvaluation(test *testing.T) {
 }
 
 func TestDateComparison(test *testing.T) {
-
 	expression, err := NewEvaluableExpression("'2014-01-02' > '2014-01-01 23:59:59'")
 	if err != nil {
 		test.Log(err)
@@ -164,7 +158,6 @@ func TestMultipleEvaluation(test *testing.T) {
 }
 
 func TestStrlenFunction(test *testing.T) {
-
 	functions := map[string]ExpressionFunction{
 		"strlen": func(args ...interface{}) (interface{}, error) {
 			length := len(args[0].(string))

@@ -27,7 +27,6 @@ type ExpressionTokenSyntaxTest struct {
 }
 
 func TestNilValues(test *testing.T) {
-
 	cases := []ExpressionTokenSyntaxTest{
 		{
 			Name: "Nil numeric",
@@ -166,7 +165,6 @@ func TestNilValues(test *testing.T) {
 }
 
 func runExpressionFromTokenTests(cases []ExpressionTokenSyntaxTest, expectFail bool, test *testing.T) {
-
 	var err error
 
 	fmt.Printf("Running %d expression from expression token tests...\n", len(cases))
