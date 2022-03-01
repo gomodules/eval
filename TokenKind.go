@@ -34,7 +34,6 @@ const (
 	e.g., when passed the NUMERIC TokenKind, this returns the string "NUMERIC".
 */
 func (kind TokenKind) String() string {
-
 	switch kind {
 
 	case PREFIX:

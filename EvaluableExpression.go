@@ -5,8 +5,10 @@ import (
 	"fmt"
 )
 
-const isoDateFormat string = "2006-01-02T15:04:05.999999999Z0700"
-const shortCircuitHolder int = -1
+const (
+	isoDateFormat      string = "2006-01-02T15:04:05.999999999Z0700"
+	shortCircuitHolder int    = -1
+)
 
 var DUMMY_PARAMETERS = MapParameters(map[string]interface{}{})
 
@@ -15,7 +17,6 @@ var DUMMY_PARAMETERS = MapParameters(map[string]interface{}{})
 	are an expression that can be evaluated down into a single value.
 */
 type EvaluableExpression struct {
-
 	/*
 		Represents the query format used to output dates. Typically only used when creating SQL or Mongo queries from an expression.
 		Defaults to the complete ISO8601 format, including nanoseconds.
@@ -42,7 +43,6 @@ type EvaluableExpression struct {
 	Returns an error if the given expression has invalid syntax.
 */
 func NewEvaluableExpression(expression string) (*EvaluableExpression, error) {
-
 	functions := make(map[string]ExpressionFunction)
 	return NewEvaluableExpressionWithFunctions(expression, functions)
 }
@@ -52,7 +52,6 @@ func NewEvaluableExpression(expression string) (*EvaluableExpression, error) {
 	This is useful in cases where you may be generating an expression automatically, or using some other parser (e.g., to parse from a query language)
 */
 func NewEvaluableExpressionFromTokens(tokens []ExpressionToken) (*EvaluableExpression, error) {
-
 	var ret *EvaluableExpression
 	var err error
 
@@ -88,7 +87,6 @@ func NewEvaluableExpressionFromTokens(tokens []ExpressionToken) (*EvaluableExpre
 	Functions passed into this will be available to the expression.
 */
 func NewEvaluableExpressionWithFunctions(expression string, functions map[string]ExpressionFunction) (*EvaluableExpression, error) {
-
 	var ret *EvaluableExpression
 	var err error
 
@@ -129,7 +127,6 @@ func NewEvaluableExpressionWithFunctions(expression string, functions map[string
 	Same as `Eval`, but automatically wraps a map of parameters into a `govalute.Parameters` structure.
 */
 func (this EvaluableExpression) Evaluate(parameters map[string]interface{}) (interface{}, error) {
-
 	if parameters == nil {
 		return this.Eval(nil)
 	}
@@ -149,7 +146,6 @@ func (this EvaluableExpression) Evaluate(parameters map[string]interface{}) (int
 	e.g., if the expression is "foo + 1" and parameters contains "foo" = 2, this will return 3.0
 */
 func (this EvaluableExpression) Eval(parameters Parameters) (interface{}, error) {
-
 	if this.evaluationStages == nil {
 		return nil, nil
 	}
@@ -164,7 +160,6 @@ func (this EvaluableExpression) Eval(parameters Parameters) (interface{}, error)
 }
 
 func (this EvaluableExpression) evaluateStage(stage *evaluationStage, parameters Parameters) (interface{}, error) {
-
 	var left, right interface{}
 	var err error
 
@@ -233,7 +228,6 @@ func (this EvaluableExpression) evaluateStage(stage *evaluationStage, parameters
 }
 
 func typeCheck(check stageTypeCheck, value interface{}, symbol OperatorSymbol, format string) error {
-
 	if check == nil {
 		return nil
 	}
@@ -250,7 +244,6 @@ func typeCheck(check stageTypeCheck, value interface{}, symbol OperatorSymbol, f
 	Returns an array representing the ExpressionTokens that make up this expression.
 */
 func (this EvaluableExpression) Tokens() []ExpressionToken {
-
 	return this.tokens
 }
 
@@ -258,7 +251,6 @@ func (this EvaluableExpression) Tokens() []ExpressionToken {
 	Returns the original expression used to create this EvaluableExpression.
 */
 func (this EvaluableExpression) String() string {
-
 	return this.inputExpression
 }
 

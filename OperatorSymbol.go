@@ -68,7 +68,6 @@ const (
 )
 
 func findOperatorPrecedenceForSymbol(symbol OperatorSymbol) operatorPrecedence {
-
 	switch symbol {
 	case NOOP:
 		return noopPrecedence
@@ -225,7 +224,6 @@ var separatorSymbols = map[string]OperatorSymbol{
 	False otherwise.
 */
 func (this OperatorSymbol) IsModifierType(candidate []OperatorSymbol) bool {
-
 	for _, symbolType := range candidate {
 		if this == symbolType {
 			return true
@@ -242,7 +240,6 @@ func (this OperatorSymbol) IsModifierType(candidate []OperatorSymbol) bool {
 	Adding operators is rare enough that we just stringify it here instead.
 */
 func (this OperatorSymbol) String() string {
-
 	switch this {
 	case NOOP:
 		return "NOOP"

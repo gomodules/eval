@@ -15,13 +15,11 @@ type lexerState struct {
 // lexer states.
 // Constant for all purposes except compiler.
 var validLexerStates = []lexerState{
-
 	{
 		kind:       UNKNOWN,
 		isEOF:      false,
 		isNullable: true,
 		validNextKinds: []TokenKind{
-
 			PREFIX,
 			NUMERIC,
 			BOOLEAN,
@@ -36,12 +34,10 @@ var validLexerStates = []lexerState{
 	},
 
 	{
-
 		kind:       CLAUSE,
 		isEOF:      false,
 		isNullable: true,
 		validNextKinds: []TokenKind{
-
 			PREFIX,
 			NUMERIC,
 			BOOLEAN,
@@ -57,12 +53,10 @@ var validLexerStates = []lexerState{
 	},
 
 	{
-
 		kind:       CLAUSE_CLOSE,
 		isEOF:      true,
 		isNullable: true,
 		validNextKinds: []TokenKind{
-
 			COMPARATOR,
 			MODIFIER,
 			NUMERIC,
@@ -80,12 +74,10 @@ var validLexerStates = []lexerState{
 	},
 
 	{
-
 		kind:       NUMERIC,
 		isEOF:      true,
 		isNullable: false,
 		validNextKinds: []TokenKind{
-
 			MODIFIER,
 			COMPARATOR,
 			LOGICALOP,
@@ -95,12 +87,10 @@ var validLexerStates = []lexerState{
 		},
 	},
 	{
-
 		kind:       BOOLEAN,
 		isEOF:      true,
 		isNullable: false,
 		validNextKinds: []TokenKind{
-
 			MODIFIER,
 			COMPARATOR,
 			LOGICALOP,
@@ -110,12 +100,10 @@ var validLexerStates = []lexerState{
 		},
 	},
 	{
-
 		kind:       STRING,
 		isEOF:      true,
 		isNullable: false,
 		validNextKinds: []TokenKind{
-
 			MODIFIER,
 			COMPARATOR,
 			LOGICALOP,
@@ -125,12 +113,10 @@ var validLexerStates = []lexerState{
 		},
 	},
 	{
-
 		kind:       TIME,
 		isEOF:      true,
 		isNullable: false,
 		validNextKinds: []TokenKind{
-
 			MODIFIER,
 			COMPARATOR,
 			LOGICALOP,
@@ -139,12 +125,10 @@ var validLexerStates = []lexerState{
 		},
 	},
 	{
-
 		kind:       PATTERN,
 		isEOF:      true,
 		isNullable: false,
 		validNextKinds: []TokenKind{
-
 			MODIFIER,
 			COMPARATOR,
 			LOGICALOP,
@@ -153,12 +137,10 @@ var validLexerStates = []lexerState{
 		},
 	},
 	{
-
 		kind:       VARIABLE,
 		isEOF:      true,
 		isNullable: false,
 		validNextKinds: []TokenKind{
-
 			MODIFIER,
 			COMPARATOR,
 			LOGICALOP,
@@ -168,12 +150,10 @@ var validLexerStates = []lexerState{
 		},
 	},
 	{
-
 		kind:       MODIFIER,
 		isEOF:      false,
 		isNullable: false,
 		validNextKinds: []TokenKind{
-
 			PREFIX,
 			NUMERIC,
 			VARIABLE,
@@ -186,12 +166,10 @@ var validLexerStates = []lexerState{
 		},
 	},
 	{
-
 		kind:       COMPARATOR,
 		isEOF:      false,
 		isNullable: false,
 		validNextKinds: []TokenKind{
-
 			PREFIX,
 			NUMERIC,
 			BOOLEAN,
@@ -206,12 +184,10 @@ var validLexerStates = []lexerState{
 		},
 	},
 	{
-
 		kind:       LOGICALOP,
 		isEOF:      false,
 		isNullable: false,
 		validNextKinds: []TokenKind{
-
 			PREFIX,
 			NUMERIC,
 			BOOLEAN,
@@ -225,12 +201,10 @@ var validLexerStates = []lexerState{
 		},
 	},
 	{
-
 		kind:       PREFIX,
 		isEOF:      false,
 		isNullable: false,
 		validNextKinds: []TokenKind{
-
 			NUMERIC,
 			BOOLEAN,
 			VARIABLE,
@@ -242,12 +216,10 @@ var validLexerStates = []lexerState{
 	},
 
 	{
-
 		kind:       TERNARY,
 		isEOF:      false,
 		isNullable: false,
 		validNextKinds: []TokenKind{
-
 			PREFIX,
 			NUMERIC,
 			BOOLEAN,
@@ -261,7 +233,6 @@ var validLexerStates = []lexerState{
 		},
 	},
 	{
-
 		kind:       FUNCTION,
 		isEOF:      false,
 		isNullable: false,
@@ -270,7 +241,6 @@ var validLexerStates = []lexerState{
 		},
 	},
 	{
-
 		kind:       ACCESSOR,
 		isEOF:      true,
 		isNullable: false,
@@ -285,12 +255,10 @@ var validLexerStates = []lexerState{
 		},
 	},
 	{
-
 		kind:       SEPARATOR,
 		isEOF:      false,
 		isNullable: true,
 		validNextKinds: []TokenKind{
-
 			PREFIX,
 			NUMERIC,
 			BOOLEAN,
@@ -305,9 +273,7 @@ var validLexerStates = []lexerState{
 }
 
 func (this lexerState) canTransitionTo(kind TokenKind) bool {
-
 	for _, validKind := range this.validNextKinds {
-
 		if validKind == kind {
 			return true
 		}
@@ -317,7 +283,6 @@ func (this lexerState) canTransitionTo(kind TokenKind) bool {
 }
 
 func checkExpressionSyntax(tokens []ExpressionToken) error {
-
 	var state lexerState
 	var lastToken ExpressionToken
 	var err error
@@ -360,9 +325,7 @@ func checkExpressionSyntax(tokens []ExpressionToken) error {
 }
 
 func getLexerStateForToken(kind TokenKind) (lexerState, error) {
-
 	for _, possibleState := range validLexerStates {
-
 		if possibleState.kind == kind {
 			return possibleState, nil
 		}

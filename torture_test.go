@@ -118,7 +118,6 @@ func init() {
 }
 
 func TestPanics(test *testing.T) {
-
 	if os.Getenv("GOVALUATE_TORTURE_TEST") == "" {
 		test.Logf("'GOVALUATE_TORTURE_TEST' env var not set - skipping torture test.")
 		test.Skip()
@@ -146,7 +145,6 @@ func TestPanics(test *testing.T) {
 }
 
 func checkPanic(expression string, test *testing.T) {
-
 	parameters := make(map[string]interface{})
 
 	defer func() {
@@ -170,7 +168,6 @@ func checkPanic(expression string, test *testing.T) {
 }
 
 func getRandom(haystack []interface{}) interface{} {
-
 	i := rand.Intn(len(haystack))
 	return haystack[i]
 }

@@ -20,11 +20,8 @@ type TokenParsingTest struct {
 }
 
 func TestConstantParsing(test *testing.T) {
-
 	tokenParsingTests := []TokenParsingTest{
-
 		{
-
 			Name:  "Single numeric",
 			Input: "1",
 			Expected: []ExpressionToken{
@@ -35,7 +32,6 @@ func TestConstantParsing(test *testing.T) {
 			},
 		},
 		{
-
 			Name:  "Single two-digit numeric",
 			Input: "50",
 			Expected: []ExpressionToken{
@@ -46,7 +42,6 @@ func TestConstantParsing(test *testing.T) {
 			},
 		},
 		{
-
 			Name:  "Zero",
 			Input: "0",
 			Expected: []ExpressionToken{
@@ -97,7 +92,6 @@ func TestConstantParsing(test *testing.T) {
 			},
 		},
 		{
-
 			Name:  "Single string",
 			Input: "'foo'",
 			Expected: []ExpressionToken{
@@ -108,7 +102,6 @@ func TestConstantParsing(test *testing.T) {
 			},
 		},
 		{
-
 			Name:  "Single time, RFC3339, only date",
 			Input: "'2014-01-02'",
 			Expected: []ExpressionToken{
@@ -119,7 +112,6 @@ func TestConstantParsing(test *testing.T) {
 			},
 		},
 		{
-
 			Name:  "Single time, RFC3339, with hh:mm",
 			Input: "'2014-01-02 14:12'",
 			Expected: []ExpressionToken{
@@ -130,7 +122,6 @@ func TestConstantParsing(test *testing.T) {
 			},
 		},
 		{
-
 			Name:  "Single time, RFC3339, with hh:mm:ss",
 			Input: "'2014-01-02 14:12:22'",
 			Expected: []ExpressionToken{
@@ -141,7 +132,6 @@ func TestConstantParsing(test *testing.T) {
 			},
 		},
 		{
-
 			Name:  "Single boolean",
 			Input: "true",
 			Expected: []ExpressionToken{
@@ -152,7 +142,6 @@ func TestConstantParsing(test *testing.T) {
 			},
 		},
 		{
-
 			Name:  "Single large numeric",
 			Input: "1234567890",
 			Expected: []ExpressionToken{
@@ -163,7 +152,6 @@ func TestConstantParsing(test *testing.T) {
 			},
 		},
 		{
-
 			Name:  "Single floating-point",
 			Input: "0.5",
 			Expected: []ExpressionToken{
@@ -174,7 +162,6 @@ func TestConstantParsing(test *testing.T) {
 			},
 		},
 		{
-
 			Name:  "Single large floating point",
 			Input: "3.14567471",
 			Expected: []ExpressionToken{
@@ -185,7 +172,6 @@ func TestConstantParsing(test *testing.T) {
 			},
 		},
 		{
-
 			Name:  "Single false boolean",
 			Input: "false",
 			Expected: []ExpressionToken{
@@ -456,11 +442,8 @@ func TestConstantParsing(test *testing.T) {
 }
 
 func TestLogicalOperatorParsing(test *testing.T) {
-
 	tokenParsingTests := []TokenParsingTest{
-
 		{
-
 			Name:  "Boolean AND",
 			Input: "true && false",
 			Expected: []ExpressionToken{
@@ -479,7 +462,6 @@ func TestLogicalOperatorParsing(test *testing.T) {
 			},
 		},
 		{
-
 			Name:  "Boolean OR",
 			Input: "true || false",
 			Expected: []ExpressionToken{
@@ -498,7 +480,6 @@ func TestLogicalOperatorParsing(test *testing.T) {
 			},
 		},
 		{
-
 			Name:  "Multiple logical operators",
 			Input: "true || false && true",
 			Expected: []ExpressionToken{
@@ -531,11 +512,8 @@ func TestLogicalOperatorParsing(test *testing.T) {
 }
 
 func TestComparatorParsing(test *testing.T) {
-
 	tokenParsingTests := []TokenParsingTest{
-
 		{
-
 			Name:  "Numeric EQ",
 			Input: "1 == 2",
 			Expected: []ExpressionToken{
@@ -554,7 +532,6 @@ func TestComparatorParsing(test *testing.T) {
 			},
 		},
 		{
-
 			Name:  "Numeric NEQ",
 			Input: "1 != 2",
 			Expected: []ExpressionToken{
@@ -573,7 +550,6 @@ func TestComparatorParsing(test *testing.T) {
 			},
 		},
 		{
-
 			Name:  "Numeric GT",
 			Input: "1 > 0",
 			Expected: []ExpressionToken{
@@ -592,7 +568,6 @@ func TestComparatorParsing(test *testing.T) {
 			},
 		},
 		{
-
 			Name:  "Numeric LT",
 			Input: "1 < 2",
 			Expected: []ExpressionToken{
@@ -611,7 +586,6 @@ func TestComparatorParsing(test *testing.T) {
 			},
 		},
 		{
-
 			Name:  "Numeric GTE",
 			Input: "1 >= 2",
 			Expected: []ExpressionToken{
@@ -630,7 +604,6 @@ func TestComparatorParsing(test *testing.T) {
 			},
 		},
 		{
-
 			Name:  "Numeric LTE",
 			Input: "1 <= 2",
 			Expected: []ExpressionToken{
@@ -649,7 +622,6 @@ func TestComparatorParsing(test *testing.T) {
 			},
 		},
 		{
-
 			Name:  "String LT",
 			Input: "'ab.cd' < 'abc.def'",
 			Expected: []ExpressionToken{
@@ -668,7 +640,6 @@ func TestComparatorParsing(test *testing.T) {
 			},
 		},
 		{
-
 			Name:  "String LTE",
 			Input: "'ab.cd' <= 'abc.def'",
 			Expected: []ExpressionToken{
@@ -687,7 +658,6 @@ func TestComparatorParsing(test *testing.T) {
 			},
 		},
 		{
-
 			Name:  "String GT",
 			Input: "'ab.cd' > 'abc.def'",
 			Expected: []ExpressionToken{
@@ -706,7 +676,6 @@ func TestComparatorParsing(test *testing.T) {
 			},
 		},
 		{
-
 			Name:  "String GTE",
 			Input: "'ab.cd' >= 'abc.def'",
 			Expected: []ExpressionToken{
@@ -725,7 +694,6 @@ func TestComparatorParsing(test *testing.T) {
 			},
 		},
 		{
-
 			Name:  "String REQ",
 			Input: "'foobar' =~ 'bar'",
 			Expected: []ExpressionToken{
@@ -746,7 +714,6 @@ func TestComparatorParsing(test *testing.T) {
 			},
 		},
 		{
-
 			Name:  "String NREQ",
 			Input: "'foobar' !~ 'bar'",
 			Expected: []ExpressionToken{
@@ -764,7 +731,6 @@ func TestComparatorParsing(test *testing.T) {
 			},
 		},
 		{
-
 			Name:  "Comparator against modifier string additive (#22)",
 			Input: "'foo' == '+'",
 			Expected: []ExpressionToken{
@@ -783,7 +749,6 @@ func TestComparatorParsing(test *testing.T) {
 			},
 		},
 		{
-
 			Name:  "Comparator against modifier string multiplicative (#22)",
 			Input: "'foo' == '/'",
 			Expected: []ExpressionToken{
@@ -802,7 +767,6 @@ func TestComparatorParsing(test *testing.T) {
 			},
 		},
 		{
-
 			Name:  "Comparator against modifier string exponential (#22)",
 			Input: "'foo' == '**'",
 			Expected: []ExpressionToken{
@@ -821,7 +785,6 @@ func TestComparatorParsing(test *testing.T) {
 			},
 		},
 		{
-
 			Name:  "Comparator against modifier string bitwise (#22)",
 			Input: "'foo' == '^'",
 			Expected: []ExpressionToken{
@@ -840,7 +803,6 @@ func TestComparatorParsing(test *testing.T) {
 			},
 		},
 		{
-
 			Name:  "Comparator against modifier string shift (#22)",
 			Input: "'foo' == '>>'",
 			Expected: []ExpressionToken{
@@ -859,7 +821,6 @@ func TestComparatorParsing(test *testing.T) {
 			},
 		},
 		{
-
 			Name:  "Comparator against modifier string ternary (#22)",
 			Input: "'foo' == '?'",
 			Expected: []ExpressionToken{
@@ -878,7 +839,6 @@ func TestComparatorParsing(test *testing.T) {
 			},
 		},
 		{
-
 			Name:  "Array membership lowercase",
 			Input: "'foo' in ('foo', 'bar')",
 			Expected: []ExpressionToken{
@@ -910,7 +870,6 @@ func TestComparatorParsing(test *testing.T) {
 			},
 		},
 		{
-
 			Name:  "Array membership uppercase",
 			Input: "'foo' IN ('foo', 'bar')",
 			Expected: []ExpressionToken{
@@ -948,11 +907,8 @@ func TestComparatorParsing(test *testing.T) {
 }
 
 func TestModifierParsing(test *testing.T) {
-
 	tokenParsingTests := []TokenParsingTest{
-
 		{
-
 			Name:  "Numeric PLUS",
 			Input: "1 + 1",
 			Expected: []ExpressionToken{
@@ -971,7 +927,6 @@ func TestModifierParsing(test *testing.T) {
 			},
 		},
 		{
-
 			Name:  "Numeric MINUS",
 			Input: "1 - 1",
 			Expected: []ExpressionToken{
@@ -990,7 +945,6 @@ func TestModifierParsing(test *testing.T) {
 			},
 		},
 		{
-
 			Name:  "Numeric MULTIPLY",
 			Input: "1 * 1",
 			Expected: []ExpressionToken{
@@ -1009,7 +963,6 @@ func TestModifierParsing(test *testing.T) {
 			},
 		},
 		{
-
 			Name:  "Numeric DIVIDE",
 			Input: "1 / 1",
 			Expected: []ExpressionToken{
@@ -1028,7 +981,6 @@ func TestModifierParsing(test *testing.T) {
 			},
 		},
 		{
-
 			Name:  "Numeric MODULUS",
 			Input: "1 % 1",
 			Expected: []ExpressionToken{
@@ -1047,7 +999,6 @@ func TestModifierParsing(test *testing.T) {
 			},
 		},
 		{
-
 			Name:  "Numeric BITWISE_AND",
 			Input: "1 & 1",
 			Expected: []ExpressionToken{
@@ -1066,7 +1017,6 @@ func TestModifierParsing(test *testing.T) {
 			},
 		},
 		{
-
 			Name:  "Numeric BITWISE_OR",
 			Input: "1 | 1",
 			Expected: []ExpressionToken{
@@ -1085,7 +1035,6 @@ func TestModifierParsing(test *testing.T) {
 			},
 		},
 		{
-
 			Name:  "Numeric BITWISE_XOR",
 			Input: "1 ^ 1",
 			Expected: []ExpressionToken{
@@ -1104,7 +1053,6 @@ func TestModifierParsing(test *testing.T) {
 			},
 		},
 		{
-
 			Name:  "Numeric BITWISE_LSHIFT",
 			Input: "1 << 1",
 			Expected: []ExpressionToken{
@@ -1123,7 +1071,6 @@ func TestModifierParsing(test *testing.T) {
 			},
 		},
 		{
-
 			Name:  "Numeric BITWISE_RSHIFT",
 			Input: "1 >> 1",
 			Expected: []ExpressionToken{
@@ -1148,11 +1095,8 @@ func TestModifierParsing(test *testing.T) {
 }
 
 func TestPrefixParsing(test *testing.T) {
-
 	testCases := []TokenParsingTest{
-
 		{
-
 			Name:  "Sign prefix",
 			Input: "-1",
 			Expected: []ExpressionToken{
@@ -1167,7 +1111,6 @@ func TestPrefixParsing(test *testing.T) {
 			},
 		},
 		{
-
 			Name:  "Sign prefix on variable",
 			Input: "-foo",
 			Expected: []ExpressionToken{
@@ -1182,7 +1125,6 @@ func TestPrefixParsing(test *testing.T) {
 			},
 		},
 		{
-
 			Name:  "Boolean prefix",
 			Input: "!true",
 			Expected: []ExpressionToken{
@@ -1197,7 +1139,6 @@ func TestPrefixParsing(test *testing.T) {
 			},
 		},
 		{
-
 			Name:  "Boolean prefix on variable",
 			Input: "!foo",
 			Expected: []ExpressionToken{
@@ -1212,7 +1153,6 @@ func TestPrefixParsing(test *testing.T) {
 			},
 		},
 		{
-
 			Name:  "Bitwise not prefix",
 			Input: "~1",
 			Expected: []ExpressionToken{
@@ -1227,7 +1167,6 @@ func TestPrefixParsing(test *testing.T) {
 			},
 		},
 		{
-
 			Name:  "Bitwise not prefix on variable",
 			Input: "~foo",
 			Expected: []ExpressionToken{
@@ -1248,11 +1187,8 @@ func TestPrefixParsing(test *testing.T) {
 }
 
 func TestEscapedParameters(test *testing.T) {
-
 	testCases := []TokenParsingTest{
-
 		{
-
 			Name:  "Single escaped parameter",
 			Input: "[foo]",
 			Expected: []ExpressionToken{
@@ -1263,7 +1199,6 @@ func TestEscapedParameters(test *testing.T) {
 			},
 		},
 		{
-
 			Name:  "Single escaped parameter with whitespace",
 			Input: "[foo bar]",
 			Expected: []ExpressionToken{
@@ -1274,7 +1209,6 @@ func TestEscapedParameters(test *testing.T) {
 			},
 		},
 		{
-
 			Name:  "Single escaped parameter with escaped closing bracket",
 			Input: "[foo[bar\\]]",
 			Expected: []ExpressionToken{
@@ -1285,7 +1219,6 @@ func TestEscapedParameters(test *testing.T) {
 			},
 		},
 		{
-
 			Name:  "Escaped parameters and unescaped parameters",
 			Input: "[foo] > bar",
 			Expected: []ExpressionToken{
@@ -1304,7 +1237,6 @@ func TestEscapedParameters(test *testing.T) {
 			},
 		},
 		{
-
 			Name:  "Unescaped parameter with space",
 			Input: "foo\\ bar > bar",
 			Expected: []ExpressionToken{
@@ -1323,7 +1255,6 @@ func TestEscapedParameters(test *testing.T) {
 			},
 		},
 		{
-
 			Name:  "Unescaped parameter with space",
 			Input: "response\\-time > bar",
 			Expected: []ExpressionToken{
@@ -1342,7 +1273,6 @@ func TestEscapedParameters(test *testing.T) {
 			},
 		},
 		{
-
 			Name:  "Parameters with snake_case",
 			Input: "foo_bar > baz_quux",
 			Expected: []ExpressionToken{
@@ -1361,7 +1291,6 @@ func TestEscapedParameters(test *testing.T) {
 			},
 		},
 		{
-
 			Name:  "String literal uses backslash to escape",
 			Input: "\"foo\\'bar\"",
 			Expected: []ExpressionToken{
@@ -1378,9 +1307,7 @@ func TestEscapedParameters(test *testing.T) {
 
 func TestTernaryParsing(test *testing.T) {
 	tokenParsingTests := []TokenParsingTest{
-
 		{
-
 			Name:  "Ternary after Boolean",
 			Input: "true ? 1",
 			Expected: []ExpressionToken{
@@ -1399,7 +1326,6 @@ func TestTernaryParsing(test *testing.T) {
 			},
 		},
 		{
-
 			Name:  "Ternary after Comperator",
 			Input: "1 == 0 ? true",
 			Expected: []ExpressionToken{
@@ -1426,7 +1352,6 @@ func TestTernaryParsing(test *testing.T) {
 			},
 		},
 		{
-
 			Name:  "Null coalesce left",
 			Input: "1 ?? 2",
 			Expected: []ExpressionToken{
@@ -1453,7 +1378,6 @@ func TestTernaryParsing(test *testing.T) {
 	Tests to make sure that the String() reprsentation of an expression exactly matches what is given to the parse function.
 */
 func TestOriginalString(test *testing.T) {
-
 	// include all the token types, to be sure there's no shenaniganery going on.
 	expressionString := "2 > 1 &&" +
 		"'something' != 'nothing' || " +
@@ -1479,7 +1403,6 @@ func TestOriginalString(test *testing.T) {
 	Tests to make sure that the Vars() reprsentation of an expression identifies all variables contained within the expression.
 */
 func TestOriginalVars(test *testing.T) {
-
 	// include all the token types, to be sure there's no shenaniganery going on.
 	expressionString := "2 > 1 &&" +
 		"'something' != 'nothing' || " +
@@ -1487,9 +1410,11 @@ func TestOriginalVars(test *testing.T) {
 		"[escapedVariable name with spaces] <= unescaped\\-variableName &&" +
 		"modifierTest + 1000 / 2 > (80 * 100 % 2) && true ? true : false"
 
-	expectedVars := [3]string{"escapedVariable name with spaces",
+	expectedVars := [3]string{
+		"escapedVariable name with spaces",
 		"modifierTest",
-		"unescaped-variableName"}
+		"unescaped-variableName",
+	}
 
 	expression, err := NewEvaluableExpression(expressionString)
 	if err != nil {
@@ -1517,7 +1442,6 @@ func TestOriginalVars(test *testing.T) {
 }
 
 func combineWhitespaceExpressions(testCases []TokenParsingTest) []TokenParsingTest {
-
 	var currentCase, strippedCase TokenParsingTest
 	var caseLength int
 
@@ -1528,7 +1452,6 @@ func combineWhitespaceExpressions(testCases []TokenParsingTest) []TokenParsingTe
 		currentCase = testCases[i]
 
 		strippedCase = TokenParsingTest{
-
 			Name:      (currentCase.Name + " (without whitespace)"),
 			Input:     stripUnquotedWhitespace(currentCase.Input),
 			Expected:  currentCase.Expected,
@@ -1542,7 +1465,6 @@ func combineWhitespaceExpressions(testCases []TokenParsingTest) []TokenParsingTe
 }
 
 func stripUnquotedWhitespace(expression string) string {
-
 	var expressionBuffer bytes.Buffer
 	var quoted bool
 
@@ -1563,7 +1485,6 @@ func stripUnquotedWhitespace(expression string) string {
 }
 
 func runTokenParsingTest(tokenParsingTests []TokenParsingTest, test *testing.T) {
-
 	var parsingTest TokenParsingTest
 	var expression *EvaluableExpression
 	var actualTokens []ExpressionToken
@@ -1643,7 +1564,6 @@ func runTokenParsingTest(tokenParsingTests []TokenParsingTest, test *testing.T) 
 				}
 
 				for z, actual := range actualToken.Value.([]string) {
-
 					if actual != expectedToken.Value.([]string)[z] {
 
 						test.Logf("Test '%s' failed:", parsingTest.Name)

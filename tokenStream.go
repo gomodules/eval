@@ -7,7 +7,6 @@ type tokenStream struct {
 }
 
 func newTokenStream(tokens []ExpressionToken) *tokenStream {
-
 	var ret *tokenStream
 
 	ret = new(tokenStream)
@@ -21,7 +20,6 @@ func (this *tokenStream) rewind() {
 }
 
 func (this *tokenStream) next() ExpressionToken {
-
 	var token ExpressionToken
 
 	token = this.tokens[this.index]
@@ -31,6 +29,5 @@ func (this *tokenStream) next() ExpressionToken {
 }
 
 func (this tokenStream) hasNext() bool {
-
 	return this.index < this.tokenLength
 }
